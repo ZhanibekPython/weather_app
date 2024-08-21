@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="container mx-auto">
+    <div class="row mt-5 d-flex justify-content-center">
+        <div class="card col-12 bg-success">
+            <div class="card-header mx-auto">
+                <h1 class="bg-success text-white">
+                    Get weather in your city
+                </h1>
+            </div>
+        </div>
+    </div>
+    <form id="form" class="p-5 bg-success-subtle" action="" method="post">
+        {% csrf_token %}
+        <div class="row mt-3">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="city">@</span>
+                <input type="text" class="form-control" name="city" placeholder="Your city">
+            </div>
+        </div>
+        <div class="d-grid gap-2 col-4 mx-auto mt-4">
+          <button class="btn btn-success" type="submit">Check</button>
+        </div>
+        {% if result %}
+            <div class="row mt-3 col-sm-6 mx-auto">
+                <div class="result mt-4">
+                    <h3 class="mx-auto">The weather in {{ city }}:</h3>
+                    <p>Celsius - {{ temp }}</p>
+                    <p>Feels - {{ feels_like }}</p>
+                    <p>Cloudiness - {{ cloudiness }}</p>
+                    <p>Pressure - {{ pressure }}</p>
+                    <p>Humidity - {{ humidity }}</p>
+                </div>
+            </div>
+        {% endif %}
+    <form>
+</div>
+
+{% endblock %}
